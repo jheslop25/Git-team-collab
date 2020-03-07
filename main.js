@@ -13,10 +13,11 @@ button.on(
     {
         "click": function(){
             $.ajax({
-                "url": baseURL + "book",
+                "url": baseURL + "movie",
                 "type": "GET",
                 "data": {},
-                "dataType": "JSON"
+                "dataType": "JSON",
+                "headers": {"Authorization": "Bearer " +apikey}
             }).done(
                 function(resultJSON){
                     console.log('success!');
