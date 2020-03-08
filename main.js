@@ -10,38 +10,62 @@ var apikey = 'pBdojVpzHyA9Af8Jrr2x';
 
 var gandalfButton = $('#gandalf');
 
+class Gandalf {
+    constructor(quotes) {
+        this.gandyWis = quotes;
+    }
+    giveQuote() {
+        //give a random quote
+        let index = Math.floor((Math.random() * this.gandyWis.length) + 1);
+        return this.gandyWis[index];
+    }
+}
+
+class Aragorn {
+    constructor(quotes) {
+        this.aragornThots = quotes;
+    }
+    giveQuote() {
+        //give a random quote
+    }
+}
+class Frodo {
+    constructor(quotes) {
+        this.frodoFacts = quotes;
+    }
+    giveQuote() {
+        //give a random quote
+    }
+}
 
 gandalfButton.on(
     {
-        "click": function(){
+        "click": function () {
             $.ajax({
                 "url": baseURL + "character/" + gandalfId + "/quote",
                 "type": "GET",
                 "data": {},
                 "dataType": "JSON",
-                "headers": {"Authorization": "Bearer " +apikey}
+                "headers": { "Authorization": "Bearer " + apikey }
             }).done(
-                function(resultJSON){
+                function (resultJSON) {
                     console.log('success!');
-                    console.log(resultJSON);
-
-                    // let characters = resultJSON.docs;
-                    // for(i=0; i< characters.length; i++){
-                    //     //console.log(characters[i].name);
-                    //     if(characters[i].name == "Frodo Baggins"){
-                    //         console.log(characters[i].name);
-                    //         console.log(characters[i]._id);
-                    //     } else {
-                    //         //console.log('nothign');
-                    //     }
-                    // }
-                }  
+                    //console.log(resultJSON);
+                    //let result = resultJSON;
+                    let quotes = [];
+                    for (i = 0; i < resultJSON.docs.length; i++) {
+                        quotes.push(resultJSON.docs[i].dialog);
+                    }
+                    //console.log(quotes);
+                    var gandy = new Gandalf(quotes);
+                    console.log(gandy.giveQuote());
+                }
             ).fail(
-                function(xhr, status, error){
+                function (xhr, status, error) {
                     console.log('there was an error ' + error);
                 }
             ).always(
-                function(){
+                function () {
                     console.log('request complete');
                 }
             );
@@ -54,15 +78,15 @@ var frodoButton = $('#frodo');
 
 frodoButton.on(
     {
-        "click": function(){
+        "click": function () {
             $.ajax({
                 "url": baseURL + "character/" + bagginsId + "/quote",
                 "type": "GET",
                 "data": {},
                 "dataType": "JSON",
-                "headers": {"Authorization": "Bearer " +apikey}
+                "headers": { "Authorization": "Bearer " + apikey }
             }).done(
-                function(resultJSON){
+                function (resultJSON) {
                     console.log('success!');
                     console.log(resultJSON);
 
@@ -76,13 +100,13 @@ frodoButton.on(
                     //         //console.log('nothign');
                     //     }
                     // }
-                }  
+                }
             ).fail(
-                function(xhr, status, error){
+                function (xhr, status, error) {
                     console.log('there was an error ' + error);
                 }
             ).always(
-                function(){
+                function () {
                     console.log('request complete');
                 }
             );
@@ -95,15 +119,15 @@ var aragornButton = $('#aragorn');
 
 aragornButton.on(
     {
-        "click": function(){
+        "click": function () {
             $.ajax({
                 "url": baseURL + "character/" + aragornId + "/quote",
                 "type": "GET",
                 "data": {},
                 "dataType": "JSON",
-                "headers": {"Authorization": "Bearer " +apikey}
+                "headers": { "Authorization": "Bearer " + apikey }
             }).done(
-                function(resultJSON){
+                function (resultJSON) {
                     console.log('success!');
                     console.log(resultJSON);
 
@@ -117,13 +141,13 @@ aragornButton.on(
                     //         //console.log('nothign');
                     //     }
                     // }
-                }  
+                }
             ).fail(
-                function(xhr, status, error){
+                function (xhr, status, error) {
                     console.log('there was an error ' + error);
                 }
             ).always(
-                function(){
+                function () {
                     console.log('request complete');
                 }
             );
