@@ -27,6 +27,8 @@ class Aragorn {
     }
     giveQuote() {
         //give a random quote
+        let index = Math.floor((Math.random() * this.aragornThots.length) + 1);
+        return this.aragornThots[index];
     }
 }
 class Frodo {
@@ -35,6 +37,8 @@ class Frodo {
     }
     giveQuote() {
         //give a random quote
+        let index = Math.floor((Math.random() * this.frodoFacts.length) + 1);
+        return this.frodoFacts[index];
     }
 }
 
@@ -49,14 +53,10 @@ gandalfButton.on(
                 "headers": { "Authorization": "Bearer " + apikey }
             }).done(
                 function (resultJSON) {
-                    console.log('success!');
-                    //console.log(resultJSON);
-                    //let result = resultJSON;
                     let quotes = [];
                     for (i = 0; i < resultJSON.docs.length; i++) {
                         quotes.push(resultJSON.docs[i].dialog);
                     }
-                    //console.log(quotes);
                     var gandy = new Gandalf(quotes);
                     console.log(gandy.giveQuote());
                 }
@@ -87,19 +87,12 @@ frodoButton.on(
                 "headers": { "Authorization": "Bearer " + apikey }
             }).done(
                 function (resultJSON) {
-                    console.log('success!');
-                    console.log(resultJSON);
-
-                    // let characters = resultJSON.docs;
-                    // for(i=0; i< characters.length; i++){
-                    //     //console.log(characters[i].name);
-                    //     if(characters[i].name == "Frodo Baggins"){
-                    //         console.log(characters[i].name);
-                    //         console.log(characters[i]._id);
-                    //     } else {
-                    //         //console.log('nothign');
-                    //     }
-                    // }
+                    let quotes = [];
+                    for (i = 0; i < resultJSON.docs.length; i++) {
+                        quotes.push(resultJSON.docs[i].dialog);
+                    }
+                    var myLad = new Frodo(quotes);
+                    console.log(myLad.giveQuote());
                 }
             ).fail(
                 function (xhr, status, error) {
@@ -128,19 +121,12 @@ aragornButton.on(
                 "headers": { "Authorization": "Bearer " + apikey }
             }).done(
                 function (resultJSON) {
-                    console.log('success!');
-                    console.log(resultJSON);
-
-                    // let characters = resultJSON.docs;
-                    // for(i=0; i< characters.length; i++){
-                    //     //console.log(characters[i].name);
-                    //     if(characters[i].name == "Frodo Baggins"){
-                    //         console.log(characters[i].name);
-                    //         console.log(characters[i]._id);
-                    //     } else {
-                    //         //console.log('nothign');
-                    //     }
-                    // }
+                    let quotes = [];
+                    for (i = 0; i < resultJSON.docs.length; i++) {
+                        quotes.push(resultJSON.docs[i].dialog);
+                    }
+                    var elessar = new Aragorn(quotes);
+                    console.log(elessar.giveQuote());
                 }
             ).fail(
                 function (xhr, status, error) {
