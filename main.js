@@ -67,7 +67,7 @@ startButton.on(
                     var gandy = new Gandalf(quotes);
                     console.log(gandy.giveQuote());
                     var ganDOM = document.getElementById('gandyWis');
-                    ganDOM.innerHTML += gandy.giveQuote();
+                    ganDOM.innerHTML = "Gandalf: " + gandy.giveQuote();
                     
                 }
             ).fail(
@@ -91,7 +91,7 @@ startButton.on(
                             var myLad = new Frodo(quotes);
                             console.log(myLad.giveQuote());
                             var froDOM = document.getElementById('frodoFacts');
-                            froDOM.innerHTML += myLad.giveQuote();
+                            froDOM.innerHTML = "Frodo: " + myLad.giveQuote();
                         }
                     ).fail(
                         function (xhr, status, error) {
@@ -114,7 +114,7 @@ startButton.on(
                                     var elessar = new Aragorn(quotes);
                                     console.log(elessar.giveQuote());
                                     var arDOM = document.getElementById('aragornThots');
-                                    arDOM.innerHTML += elessar.giveQuote();
+                                    arDOM.innerHTML = "Aragorn: " + elessar.giveQuote();
                                 }
                             ).fail(
                                 function (xhr, status, error) {
