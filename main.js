@@ -66,6 +66,9 @@ startButton.on(
                     }
                     var gandy = new Gandalf(quotes);
                     console.log(gandy.giveQuote());
+                    var ganDOM = document.getElementById('gandyWis');
+                    ganDOM.innerHTML += gandy.giveQuote();
+                    
                 }
             ).fail(
                 function (xhr, status, error) {
@@ -87,6 +90,8 @@ startButton.on(
                             }
                             var myLad = new Frodo(quotes);
                             console.log(myLad.giveQuote());
+                            var froDOM = document.getElementById('frodoFacts');
+                            froDOM.innerHTML += myLad.giveQuote();
                         }
                     ).fail(
                         function (xhr, status, error) {
@@ -108,7 +113,8 @@ startButton.on(
                                     }
                                     var elessar = new Aragorn(quotes);
                                     console.log(elessar.giveQuote());
-                                    
+                                    var arDOM = document.getElementById('aragornThots');
+                                    arDOM.innerHTML += elessar.giveQuote();
                                 }
                             ).fail(
                                 function (xhr, status, error) {
@@ -132,70 +138,3 @@ startButton.on(
 
 
 
-//var frodoButton = $('#frodo');
-
-
-// frodoButton.on(
-//     {
-//         "click": function () {
-//             $.ajax({
-//                 "url": baseURL + "character/" + bagginsId + "/quote",
-//                 "type": "GET",
-//                 "data": {},
-//                 "dataType": "JSON",
-//                 "headers": { "Authorization": "Bearer " + apikey }
-//             }).done(
-//                 function (resultJSON) {
-//                     let quotes = [];
-//                     for (i = 0; i < resultJSON.docs.length; i++) {
-//                         quotes.push(resultJSON.docs[i].dialog);
-//                     }
-//                     var myLad = new Frodo(quotes);
-//                     console.log(myLad.giveQuote());
-//                 }
-//             ).fail(
-//                 function (xhr, status, error) {
-//                     console.log('there was an error ' + error);
-//                 }
-//             ).always(
-//                 function () {
-//                     console.log('request complete');
-//                 }
-//             );
-//         }
-//     }
-// );
-
-// var aragornButton = $('#aragorn');
-
-
-// aragornButton.on(
-//     {
-//         "click": function () {
-//             $.ajax({
-//                 "url": baseURL + "character/" + aragornId + "/quote",
-//                 "type": "GET",
-//                 "data": {},
-//                 "dataType": "JSON",
-//                 "headers": { "Authorization": "Bearer " + apikey }
-//             }).done(
-//                 function (resultJSON) {
-//                     let quotes = [];
-//                     for (i = 0; i < resultJSON.docs.length; i++) {
-//                         quotes.push(resultJSON.docs[i].dialog);
-//                     }
-//                     var elessar = new Aragorn(quotes);
-//                     console.log(elessar.giveQuote());
-//                 }
-//             ).fail(
-//                 function (xhr, status, error) {
-//                     console.log('there was an error ' + error);
-//                 }
-//             ).always(
-//                 function () {
-//                     console.log('request complete');
-//                 }
-//             );
-//         }
-//     }
-// );
