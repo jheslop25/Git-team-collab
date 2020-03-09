@@ -8,8 +8,10 @@ var baseURL = 'https://the-one-api.herokuapp.com/v1/';
 
 var apikey = 'pBdojVpzHyA9Af8Jrr2x';
 
-var gandalfButton = $('#gandalf');
+// var gandalfButton = $('#gandalf');
 
+
+// define classes 
 class Gandalf {
     constructor(quotes) {
         this.gandyWis = quotes;
@@ -42,7 +44,12 @@ class Frodo {
     }
 }
 
-gandalfButton.on(
+
+//select start button
+var startButton = $('#all-ajax');
+
+//create event listener
+startButton.on(
     {
         "click": function () {
             $.ajax({
@@ -66,77 +73,129 @@ gandalfButton.on(
                 }
             ).always(
                 function () {
-                    console.log('request complete');
+                    $.ajax({
+                        "url": baseURL + "character/" + bagginsId + "/quote",
+                        "type": "GET",
+                        "data": {},
+                        "dataType": "JSON",
+                        "headers": { "Authorization": "Bearer " + apikey }
+                    }).done(
+                        function (resultJSON) {
+                            let quotes = [];
+                            for (i = 0; i < resultJSON.docs.length; i++) {
+                                quotes.push(resultJSON.docs[i].dialog);
+                            }
+                            var myLad = new Frodo(quotes);
+                            console.log(myLad.giveQuote());
+                        }
+                    ).fail(
+                        function (xhr, status, error) {
+                            console.log('there was an error ' + error);
+                        }
+                    ).always(
+                        function () {
+                            $.ajax({
+                                "url": baseURL + "character/" + aragornId + "/quote",
+                                "type": "GET",
+                                "data": {},
+                                "dataType": "JSON",
+                                "headers": { "Authorization": "Bearer " + apikey }
+                            }).done(
+                                function (resultJSON) {
+                                    let quotes = [];
+                                    for (i = 0; i < resultJSON.docs.length; i++) {
+                                        quotes.push(resultJSON.docs[i].dialog);
+                                    }
+                                    var elessar = new Aragorn(quotes);
+                                    console.log(elessar.giveQuote());
+                                    
+                                }
+                            ).fail(
+                                function (xhr, status, error) {
+                                    console.log('there was an error ' + error);
+                                }
+                            ).always(
+                                function () {
+                                    console.log('request complete');
+                                }
+                            );
+                        }
+                    );
                 }
             );
         }
+        
     }
 );
 
-var frodoButton = $('#frodo');
 
 
-frodoButton.on(
-    {
-        "click": function () {
-            $.ajax({
-                "url": baseURL + "character/" + bagginsId + "/quote",
-                "type": "GET",
-                "data": {},
-                "dataType": "JSON",
-                "headers": { "Authorization": "Bearer " + apikey }
-            }).done(
-                function (resultJSON) {
-                    let quotes = [];
-                    for (i = 0; i < resultJSON.docs.length; i++) {
-                        quotes.push(resultJSON.docs[i].dialog);
-                    }
-                    var myLad = new Frodo(quotes);
-                    console.log(myLad.giveQuote());
-                }
-            ).fail(
-                function (xhr, status, error) {
-                    console.log('there was an error ' + error);
-                }
-            ).always(
-                function () {
-                    console.log('request complete');
-                }
-            );
-        }
-    }
-);
-
-var aragornButton = $('#aragorn');
 
 
-aragornButton.on(
-    {
-        "click": function () {
-            $.ajax({
-                "url": baseURL + "character/" + aragornId + "/quote",
-                "type": "GET",
-                "data": {},
-                "dataType": "JSON",
-                "headers": { "Authorization": "Bearer " + apikey }
-            }).done(
-                function (resultJSON) {
-                    let quotes = [];
-                    for (i = 0; i < resultJSON.docs.length; i++) {
-                        quotes.push(resultJSON.docs[i].dialog);
-                    }
-                    var elessar = new Aragorn(quotes);
-                    console.log(elessar.giveQuote());
-                }
-            ).fail(
-                function (xhr, status, error) {
-                    console.log('there was an error ' + error);
-                }
-            ).always(
-                function () {
-                    console.log('request complete');
-                }
-            );
-        }
-    }
-);
+//var frodoButton = $('#frodo');
+
+
+// frodoButton.on(
+//     {
+//         "click": function () {
+//             $.ajax({
+//                 "url": baseURL + "character/" + bagginsId + "/quote",
+//                 "type": "GET",
+//                 "data": {},
+//                 "dataType": "JSON",
+//                 "headers": { "Authorization": "Bearer " + apikey }
+//             }).done(
+//                 function (resultJSON) {
+//                     let quotes = [];
+//                     for (i = 0; i < resultJSON.docs.length; i++) {
+//                         quotes.push(resultJSON.docs[i].dialog);
+//                     }
+//                     var myLad = new Frodo(quotes);
+//                     console.log(myLad.giveQuote());
+//                 }
+//             ).fail(
+//                 function (xhr, status, error) {
+//                     console.log('there was an error ' + error);
+//                 }
+//             ).always(
+//                 function () {
+//                     console.log('request complete');
+//                 }
+//             );
+//         }
+//     }
+// );
+
+// var aragornButton = $('#aragorn');
+
+
+// aragornButton.on(
+//     {
+//         "click": function () {
+//             $.ajax({
+//                 "url": baseURL + "character/" + aragornId + "/quote",
+//                 "type": "GET",
+//                 "data": {},
+//                 "dataType": "JSON",
+//                 "headers": { "Authorization": "Bearer " + apikey }
+//             }).done(
+//                 function (resultJSON) {
+//                     let quotes = [];
+//                     for (i = 0; i < resultJSON.docs.length; i++) {
+//                         quotes.push(resultJSON.docs[i].dialog);
+//                     }
+//                     var elessar = new Aragorn(quotes);
+//                     console.log(elessar.giveQuote());
+//                 }
+//             ).fail(
+//                 function (xhr, status, error) {
+//                     console.log('there was an error ' + error);
+//                 }
+//             ).always(
+//                 function () {
+//                     console.log('request complete');
+//                 }
+//             );
+//         }
+//     }
+// );
