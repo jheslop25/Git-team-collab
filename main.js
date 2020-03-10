@@ -11,6 +11,7 @@ var apikey = 'pBdojVpzHyA9Af8Jrr2x';
 // var gandalfButton = $('#gandalf');
 
 
+
 // define classes 
 class Gandalf {
     constructor(quotes) {
@@ -133,7 +134,6 @@ startButton.on(
         
     }
 );
-
 
 
 
