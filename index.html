@@ -5,19 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Git Collab</title>
     <link rel="stylesheet" href="style.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet">
 </head>
 <body>
     <p>hello world</p>
     <button id="button">This is a button!!!</button>
 
 
+    <audio id="lotrAudio">
+        <source src="Audio/LotR.mp3" type="audio/mpeg">
+    </audio>
 
+    <p id="audio-quote" onclick="playAudio()">Not all who wonder...</p>
 
+    <div id="sidebar"></div>
    
     
     <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js"></script> <!--polyfill is for internet explorer users -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
     crossorigin="anonymous"></script>
     <script src="main.js"></script>
+    <script src="audioClick.js"></script>
+    <script src="brushstroke.js"></script>
+    <script src="imageStroke.js"></script>
 </body>
 </html>
